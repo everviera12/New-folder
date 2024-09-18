@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenida Emita</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Dancing Script -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Animación de escritura */
+    .typewriter h1 {
+      font-family: 'Dancing Script', cursive;
+      overflow: hidden;
+      border-right: 2px solid;
+      /* Simulación del cursor */
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: 2px;
+      animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+    }
+
+    /* Efecto de escribir letra por letra */
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    /* Efecto del cursor parpadeante */
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: black;
+      }
+    }
+
+    /* Animación de aparecer con translate-y para la imagen */
+    .animate-fade-up {
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeUp 1s ease-out forwards;
+      animation-delay: 1s;
+      /* Retrasa la animación para que ocurra después del texto */
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Personalización de la fuente para el párrafo */
+    .font-love {
+      font-family: 'Dancing Script', cursive;
+    }
+
+    /* Botón con forma de corazón */
+    .heart-button {
+      background-color: #f91600;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      font-size: 2rem;
+      line-height: 1;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      transition: transform 0.2s ease;
+    }
+
+    .heart-button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center gap-10 justify-center h-screen">
+  <div class="text-center grid gap-10 justify-center">
+    <!-- Texto con animación de escribir -->
+    <div class="typewriter">
+      <h1 class="text-5xl font-bold text-lobototes_red mb-4 font-love">¡Bienvenida, Emita!</h1>
+    </div>
+
+    <!-- Imagen con animación de fade-up -->
+    <img src="/05d4a4de-d328-4176-a24e-facd08cc64d4 (1).jpg" alt="Foto de Emita"
+      class="w-64 h-64 rounded-full shadow-lg mx-auto mb-4 animate-fade-up">
+
+    <p class="text-2xl text-lobototes_dark font-love">Estamos muy felices de que estés aquí.</p>
+
+    <!-- Botón con forma de corazón -->
+    <div class="flex justify-center">
+      <button onclick="playMusicAndHearts()" class="heart-button">
+        ❤️
+      </button>
+    </div>
+
+    <!-- Audio -->
+    <audio id="song">
+      <source src="/ytmp3free.cc_alejandra-guzman-yo-te-esperaba-letra-youtubemp3free.org.mp3" type="audio/mp3">
+      Tu navegador no soporta la reproducción de audio.
+    </audio>
+  </div>
+
+  <script>
+    // Función para lanzar confeti al cargar la página (una sola vez)
+    function lanzarConfeti() {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    // Lanza confeti solo una vez al cargar la página
+    window.onload = () => lanzarConfeti();
+
+    // Función para reproducir la canción y lanzar corazones
+    function playMusicAndHearts() {
+      var audio = document.getElementById('song');
+      audio.currentTime = 33; // Empieza desde el segundo 33
+      audio.play();
+
+      // Lanzar corazones al hacer clic
+      confetti({
+        particleCount: 60,
+        spread: 100,
+        origin: { y: 0.6 },
+        shapes: ['circle'], // No tiene forma de corazón directa, usamos círculos simulando corazones.
+        colors: ['#f91600', '#ff69b4', '#ff1493']
+      });
+    }
+  </script>
+</body>
+
+</html>
